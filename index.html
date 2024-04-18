@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> میرا کتب خانه </title>
+    <title>میرا  کتب خانه</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -66,63 +66,111 @@
             color: grey;
             font-size: 1.7rem;
         }
+
+        #content {
+            display: none;
+        }
+
+        #error {
+            color: red;
+            display: none;
+        }
     </style>
 </head>
 <body>
-
-  <div class="container-fluid mt-4 mb-4 pt-4 text-center">
-   <p class="banner">کتب خانه شخصی</p>
-    
-  </div>
-
-<div class="container-fluid mt-5">
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th scope="col" class="serial-number">نمبر شمار</th>
-            <th scope="col">كتاب</th>
-            <th scope="col">مؤلف</th>
-            <th scope="col">صنف</th>
-        </tr>
-        </thead>
-        <tbody id="tableBody">
-        <tr>
-            <th scope="row">0</th>
-            <td class="book-name" data-toggle="modal" data-target="#bookDetailsModal">ابھی ڈیٹا لوڈ ہو رہا ہے۔۔۔ انتظار فرمائیے۔۔۔</td>
-            <td class="author-name"> </td>
-        </tr>
-       
-        </tbody>
-    </table>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="bookDetailsModal" tabindex="-1" role="dialog" aria-labelledby="bookDetailsModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content" >
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <div class="col text-center">
-                    <h5 class="modal-title" id="bookDetailsModalLabel">تفاصيل الكتاب</h5>
-                </div>
+    <div class="container mt-5">
+        <form id="loginForm">
+            <!-- Email input -->
+            <div data-mdb-input-init class="form-outline mb-4">
+              <input type="text" id="username" name="username" class="form-control" required/>
+              <label class="form-label" for="username">Email address</label>
             </div>
-            
-            <div class="modal-body">
-                <!-- Book details content goes here -->
-                <p id="bookDetails-name"><strong>کتاب: </strong>الف</p>
-                <p id="bookDetails-author"><strong>مصنف: </strong>الف با</p>
-                <p id="bookDetails-translator"><strong>مترجم: </strong>الف با</p>
-                <p id="bookDetails-genre"><strong>صنف: </strong>الف با</p>
-                <p id="bookDetails-publisher"><strong>ناشر: </strong>الف با</p>
+          
+            <!-- Password input -->
+            <div data-mdb-input-init class="form-outline mb-4">
+              <input type="password" id="password" name="password" class="form-control" required/>
+              <label class="form-label" for="password">Password</label>
+            </div>
+          
+           
+            <!-- Submit button -->
+            <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block mb-4">Enter</button>      
+          </form>
+    </div>
 
+    <div id="error">Incorrect username or password.</div>
+    <div id="content">
+    <div class="container-fluid mt-4 mb-4 pt-4 text-center">
+        
+
+    <p class="banner">کتب خانه شخصی</p>
+        
+    </div>
+
+        <div class="container-fluid mt-5">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col" class="serial-number">نمبر شمار</th>
+                    <th scope="col">كتاب</th>
+                    <th scope="col">مؤلف</th>
+                    <th scope="col">صنف</th>
+                </tr>
+                </thead>
+                <tbody id="tableBody">
+                <tr>
+                    <th scope="row"></th>
+                    <td class="book-name" data-toggle="modal" data-target="#bookDetailsModal">ابھی ڈیٹا لوڈ نہیں کیا گیا۔</td>
+                    <td class="author-name"> </td>
+                </tr>
+            
+                </tbody>
+            </table>
+        </div>
+
+    <!-- Modal -->
+        <div class="modal fade" id="bookDetailsModal" tabindex="-1" role="dialog" aria-labelledby="bookDetailsModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" >
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <div class="col text-center">
+                            <h5 class="modal-title" id="bookDetailsModalLabel">تفاصيل الكتاب</h5>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-body">
+                        <!-- Book details content goes here -->
+                        <p id="bookDetails-name"><strong>کتاب: </strong>الف</p>
+                        <p id="bookDetails-author"><strong>مصنف: </strong>الف با</p>
+                        <p id="bookDetails-translator"><strong>مترجم: </strong>الف با</p>
+                        <p id="bookDetails-genre"><strong>صنف: </strong>الف با</p>
+                        <p id="bookDetails-publisher"><strong>ناشر: </strong>الف با</p>
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
   <script>
+
+        let shift_key = 3;
+
+        function decryptEntry(entry, shift) {
+            var decryptedEntry = [];
+            for (var i = 0; i < entry.length; i++) {
+                var decryptedValue = "";
+                for (var j = 0; j < entry[i].length; j++) {
+                    var charCode = entry[i].charCodeAt(j);
+                    decryptedValue += String.fromCharCode(charCode - shift);
+                }
+                decryptedEntry.push(decryptedValue);
+            }
+            return decryptedEntry;
+        }
 
         // Function to draw <td> tags for each five elements in a data entry
             function drawTable(dataArray) {
@@ -132,11 +180,12 @@
 
             // Populate the table with parsed data
             dataArray.forEach((row, index) => {
-            const bookName = row[0];
-            const authorName = row[2];
-            const translaterName = row[2];
-            const genre = row[3];
-            const publisher = row[4];
+            let decryptedEntry = decryptEntry(row, shift_key);
+            const bookName = decryptedEntry[0];
+            const authorName = decryptedEntry[2];
+            const translaterName = decryptedEntry[2];
+            const genre = decryptedEntry[3];
+            const publisher = decryptedEntry[4];
             const newRow = `<tr><th scope="row">${index + 1}</th><td class="book-name" data-toggle="modal" data-target="#bookDetailsModal" onclick="bookClick(event)">${bookName}</td><td>${authorName}</td><td>${genre}</td></tr>`;
             tableBody.innerHTML += newRow;
             });
@@ -147,18 +196,21 @@
         script.src = 'library_data.js';
         script.onload = function() {
             // Call the drawTable function with the loaded data
-            drawTable(dataArray);
+            //drawTable(dataArray);
         };
         document.head.appendChild(script);
 
 
     function bookClick(e){
         let index = parseInt(e.target.parentElement.querySelector("th").textContent)-1;
-        const bookName = dataArray[index][0];
-        const authorName = dataArray[index][2];
-        const translaterName = dataArray[index][2];
-        const genre = dataArray[index][3];
-        const publisher = dataArray[index][4];
+        
+        let decryptedEntry = decryptEntry(dataArray[index], shift_key);
+        const bookName = decryptedEntry[0];
+        const authorName = decryptedEntry[2];
+        const translaterName = decryptedEntry[2];
+        const genre = decryptedEntry[3];
+        const publisher = decryptedEntry[4];
+ 
         //const [bookName, authorName, translaterName, genre, publisher] = dataArray[parseInt(e.target.parentElement.querySelector("th").textContent)-1];
         document.getElementById('bookDetails-name').innerHTML = "<strong>کتاب: </strong>" + bookName;
         document.getElementById('bookDetails-author').innerHTML = "<strong>مصنف: </strong>" + authorName;
@@ -180,6 +232,26 @@
 
         
     }
+
+
+
+
+
+
+
+    // Function to handle form submission
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+            // Get username and password from form inputs
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+            shift_key = document.getElementById('password').value.length;
+            // Check if username and password are correct (for demonstration purposes)
+            
+            drawTable(dataArray);
+            document.getElementById('content').style.display = 'block';
+            document.getElementById('loginForm').style.display = 'none';
+        });
   </script>
 
 <!-- Bootstrap JS and dependencies -->
@@ -189,4 +261,5 @@
 
 </body>
 </html>
+
 
