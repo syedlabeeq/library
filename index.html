@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/custom-css.css">
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/jquery.js"></script> 
+  <script src="./rates.js"></script>
+</head>
+<body >
+
+   
+<div class="m-3" style="background-image: url(/images/bg.jpg);">
+  
+
+   <!-- Paper Selector -->
+   <div class="container jumbotron jumbotron-fluid ">
+    <nav class="navbar navbar-light bg-info w-75 container rounded-top border border-1">
+      <div class="container-fluid">
+        <a class="navbar-brand">Please Select Paper Type</a>
+      </div>
+    </nav>
+    <div class="container rounded-bottom w-75 border border-2">
+      <div class="row">
+        <div class="col bg-success bg-gradient ">
+          <div class="container-fluid">
+            
+            
+            <div class="input-group input-group-sm m-3 ">
+              <span class="input-group-text w-25 d-flex justify-content-center" id="inputGroup-sizing-sm">type</span>
+              <select id="paper_type" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                <option value="0">Local</option>
+                <option value="1">Imported</option>
+              </select>            
+            </div>           
+          </div>
+        </div>
+        
+      </div>
+    </div>
+   </div>  
+   <br>
+
+  <!-- ONE RIM COST CALCULATOR -->
+  <div class="container jumbotron jumbotron-fluid ">
+    <nav class="navbar navbar-light bg-info w-75 container rounded-top border border-1">
+      <div class="container-fluid">
+        <a class="navbar-brand">Rim Cost</a>
+      </div>
+    </nav>
+    <div class="container rounded-bottom w-75 border border-2">
+      <div class="row">
+        <div class="col bg-success bg-gradient ">
+          <div class="container-fluid">
+            
+            
+            <div class="input-group input-group-sm m-3 ">
+              <span class="input-group-text w-25 d-flex justify-content-center" id="inputGroup-sizing-sm">Size</span>
+              <select id="paper_size" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                <option value="600">20x30</option>
+                <option value="828">23x36</option>
+              </select>            
+            </div>
+        
+            
+            
+            <div class="input-group input-group-sm m-3 ">
+              <span class="input-group-text w-25 d-flex justify-content-center" id="inputGroup-sizing-sm">Grammage</span>
+              <select id="paper_grammage" class="form-select form-select-sm " aria-label=".form-select-sm example">
+                <option value="1">60</option>
+                <option value="2">63</option>
+                <option value="3">68</option>
+                <option value="4">80</option>
+                <option value="5">90</option>
+              </select>
+            </div>
+
+            <div class="input-group input-group-sm m-3 ">
+              <span class="input-group-text w-25 d-flex justify-content-center" id="inputGroup-sizing-sm">Paper Rate</span>
+              <input id="paper_rate" type="number"  min="0" defaultValue="0" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            </div>
+        
+        
+           
+            
+          </div>
+        </div>
+        <div class="col bg-light bg-gradient text-md-center">
+          <span class="text-primary fw-bold fs-5">Cost Per Rim</span>
+          <br>
+          <span id="rim_cost_result" class="text-start m-3"></span>
+        </div>
+      </div>
+    </div>
+   </div>  
+
+   <br>
+
+  <!-- RIM COUNT CALCULATOR -->
+   <div class="container jumbotron jumbotron-fluid ">
+    <nav class="navbar navbar-light bg-info w-75 container rounded-top border border-1">
+      <div class="container-fluid">
+        <a class="navbar-brand">Rim Count</a>
+      </div>
+    </nav>
+    <div class="container rounded-bottom w-75 border border-2">
+      <div class="row">
+        <div class="col bg-success bg-gradient ">
+          <div class="container-fluid">
+
+            <div class="input-group input-group-sm m-3 ">
+              <span class="input-group-text w-25 d-flex justify-content-center" id="inputGroup-sizing-sm">Page Ratio</span>
+              <select id="page_ratio" class="form-select form-select-sm " aria-label=".form-select-sm example">
+                <option value="4">4</option>
+                <option value="8">8</option>
+                <option value="16">16</option>
+                <option value="32">32</option>
+              </select>
+            </div>
+
+            <div class="input-group input-group-sm m-3 ">
+              <span class="input-group-text w-25 d-flex justify-content-center" id="inputGroup-sizing-sm">Total Pages</span>
+              <input id="total_pages" type="number"  min="0" defaultValue="0" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            </div>
+        
+        
+          
+          </div>
+        </div>
+        <div class="col bg-light bg-gradient text-md-center">
+          <span class="text-primary fw-bold fs-5">Number of Rims</span>
+          <br>
+          <span id="rim_count_result" class="text-start m-3"></span>
+        </div>
+      </div>
+    </div>
+   </div>  
+   
+   <br>
+
+   <!-- BUX BOARD RIM COST CALCULATOR -->
+   <div class="container jumbotron jumbotron-fluid ">
+    <nav class="navbar navbar-light bg-info w-75 container rounded-top border border-1">
+      <div class="container-fluid">
+        <a class="navbar-brand">Bux Board Cost</a>
+      </div>
+    </nav>
+    <div class="container rounded-bottom w-75 border border-2">
+      <div class="row">
+        <div class="col bg-success bg-gradient ">
+          <div class="container-fluid">
+                   
+            
+            <div class="input-group input-group-sm m-3 ">
+              <span class="input-group-text w-25 d-flex justify-content-center" id="inputGroup-sizing-sm">Grammage</span>
+              <select id="bux_grammage" class="form-select form-select-sm " aria-label=".form-select-sm example">
+                <option value="1">210</option>
+                <option value="2">230</option>
+                <option value="3">240</option>
+                <option value="4">250</option>
+              </select>
+            </div>
+
+            <div class="input-group input-group-sm m-3 ">
+              <span class="input-group-text w-25 d-flex justify-content-center" id="inputGroup-sizing-sm">Bux Rate</span>
+              <input id="bux_rate" type="number"  min="0" value="0" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            </div>
+        
+        
+          
+            
+          </div>
+        </div>
+        <div class="col bg-light bg-gradient text-md-center">
+          <span class="text-primary fw-bold fs-5">Cost Per Bux Board Rim</span>
+          <br>
+          <span id="bux_cost_result" class="text-start m-3"></span>
+        </div>
+      </div>
+    </div>
+   </div> 
+   <br>
+
+   <!-- BUX BOARD RIM COUNT CALCULATOR -->
+   <div class="container jumbotron jumbotron-fluid ">
+    <nav class="navbar navbar-light bg-info w-75 container rounded-top border border-1">
+      <div class="container-fluid">
+        <a class="navbar-brand">Bux Board Count</a>
+      </div>
+    </nav>
+    <div class="container rounded-bottom w-75 border border-2">
+      <div class="row">
+        <div class="col bg-success bg-gradient ">
+          <div class="container-fluid">
+                   
+            
+            <div class="input-group input-group-sm m-3 ">
+              <span class="input-group-text w-25 d-flex justify-content-center" id="inputGroup-sizing-sm">Total Books</span>
+              <input id="total_books" type="number"  min="0" value="0" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            </div>
+        
+        
+          
+            
+          </div>
+        </div>
+        <div class="col bg-light bg-gradient text-md-center">
+          <span class="text-primary fw-bold fs-5">Number of Bux Board Rims</span>
+          <br>
+          <span id="bux_count_result" class="text-start m-3"></span>
+        </div>
+      </div>
+    </div>
+   </div> 
+
+   <br>
+
+   <!-- LAMINATION COST CALCULATOR -->
+   <div class="container jumbotron jumbotron-fluid ">
+    <nav class="navbar navbar-light bg-info w-75 container rounded-top border border-1">
+      <div class="container-fluid">
+        <a class="navbar-brand">Lamination Cost</a>
+      </div>
+    </nav>
+    <div class="container rounded-bottom w-75 border border-2">
+      <div class="row">
+        <div class="col bg-success bg-gradient ">
+          <div class="container-fluid">
+                   
+            
+            <div class="input-group input-group-sm m-3 ">
+              <span class="input-group-text w-30 d-flex justify-content-center" id="inputGroup-sizing-sm">Lamination Rate</span>
+              <input id="lamination_rate" type="number"  min="0" value="0" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            </div>
+        
+        
+          
+            
+          </div>
+        </div>
+        <div class="col bg-light bg-gradient text-md-center">
+          <span class="text-primary fw-bold fs-5">Lamination Cost</span>
+          <br>
+          <span id="lamination_cost_result" class="text-start m-3"></span>
+        </div>
+      </div>
+    </div>
+   </div> 
+   <br>
+   
+     
+
+      <!-- BINDING COST CALCULATOR -->
+      <div class="container jumbotron jumbotron-fluid ">
+        <nav class="navbar navbar-light bg-info w-75 container rounded-top border border-1">
+          <div class="container-fluid">
+            <a class="navbar-brand">Binding Cost</a>
+          </div>
+        </nav>
+        <div class="container rounded-bottom w-75 border border-2">
+          <div class="row">
+            <div class="col bg-success bg-gradient ">
+              <div class="container-fluid">
+                       
+                
+                <div class="input-group input-group-sm m-3 ">
+                  <span class="input-group-text w-30 d-flex justify-content-center" id="inputGroup-sizing-sm">Farma Count</span>
+                  <input id="farma_count" type="number"  min="0" value="0" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                </div>
+            
+            
+              
+                
+              </div>
+            </div>
+            <div class="col bg-light bg-gradient text-md-center">
+              <span class="text-primary fw-bold fs-5">Binding Cost</span>
+              <br>
+              <span id="binding_cost_result" class="text-start m-3"></span>
+            </div>
+          </div>
+        </div>
+       </div> 
+       <br>
+
+
+       
+
+       <!-- PRINTING CALCULATOR -->
+   <div class="container jumbotron jumbotron-fluid ">
+    <nav class="navbar navbar-light bg-info w-75 container rounded-top border border-1">
+      <div class="container-fluid">
+        <a class="navbar-brand">Printing Cost</a>
+      </div>
+    </nav>
+    <div class="container rounded-bottom w-75 border border-2">
+      <div class="row">
+        <div class="col bg-success bg-gradient ">
+          <div class="container-fluid">
+                   
+            
+            <div class="input-group input-group-sm m-3 ">
+              <span class="input-group-text w-50 d-flex justify-content-center" id="inputGroup-sizing-sm">Card Color Scheme</span>
+              <select id="card_color" class="form-select form-select-sm " aria-label=".form-select-sm example">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+              </select>
+            </div>
+
+            <div class="input-group input-group-sm m-3 ">
+              <span class="input-group-text w-50 d-flex justify-content-center" id="inputGroup-sizing-sm">Paper Color Scheme</span>
+              <select id="paper_color" class="form-select form-select-sm " aria-label=".form-select-sm example">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+              </select>
+            </div>
+          
+            
+          </div>
+        </div>
+        <div class="col bg-light bg-gradient text-md-center">
+          <span class="text-primary fw-bold fs-5">Card Printing Cost</span>
+          <br>
+          <span id="card_printing_cost" class="text-start m-3"></span>
+          <br>
+          <span class="text-primary fw-bold fs-5">Paper Printing Cost</span>
+          <br>
+          <span id="paper_printing_cost" class="text-start m-3"></span>
+        </div>
+        
+      </div>
+    </div>
+   </div> 
+   <br>
+
+  <!-- PLATE COST CALCULATOR -->
+  <div class="container jumbotron jumbotron-fluid ">
+    <nav class="navbar navbar-light bg-info w-75 container rounded-top border border-1">
+      <div class="container-fluid">
+        <a class="navbar-brand">Plate Cost</a>
+      </div>
+    </nav>
+    <div class="container rounded-bottom w-75 border border-2">
+      <div class="row">
+        <div class="col bg-success bg-gradient ">
+          <div class="container-fluid">
+                   
+            
+            <div class="input-group input-group-sm m-3 ">
+              <span class="input-group-text w-30 d-flex justify-content-center" id="inputGroup-sizing-sm">Card Plate</span>
+              <input id="card_plate_count" type="number"  min="0" value="0" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            </div>
+        
+            <div class="input-group input-group-sm m-3 ">
+              <span class="input-group-text w-30 d-flex justify-content-center" id="inputGroup-sizing-sm">Paper Plate</span>
+              <input id="paper_plate_count" type="number"  min="0" value="0" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            </div>        
+          
+            
+          </div>
+        </div>
+        <div class="col bg-light bg-gradient text-md-center">
+          <span class="text-primary fw-bold fs-5">Plate Cost</span>
+          <br>
+          <span id="plate_cost_result" class="text-start m-3"></span>
+        </div>
+      </div>
+    </div>
+   </div> 
+   <br>
+
+    <!-- Panni Work COST CALCULATOR -->
+  <div class="container jumbotron jumbotron-fluid ">
+    <nav class="navbar navbar-light bg-info w-75 container rounded-top border border-1">
+      <div class="container-fluid">
+        <a class="navbar-brand">PANNI WORK Cost</a>
+      </div>
+    </nav>
+    <div class="container rounded-bottom w-75 border border-2">
+      <div class="row">
+        <div class="col bg-success bg-gradient ">
+          <div class="container-fluid">
+                   
+            
+            <div class="input-group input-group-sm m-3 ">
+              <span class="input-group-text w-30 d-flex justify-content-center" id="inputGroup-sizing-sm">Panni Rate</span>
+              <input id="panni_rate" type="number" min="0" value="0" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            </div>
+        
+            <div class="input-group input-group-sm m-3 ">
+              <span class="input-group-text w-30 d-flex justify-content-center" id="inputGroup-sizing-sm">Embose Rate</span>
+              <input id="embose_rate" type="number"  min="0" value="0" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            </div>        
+          
+            <div class="input-group input-group-sm m-3 ">
+              <span class="input-group-text w-30 d-flex justify-content-center" id="inputGroup-sizing-sm">Kareez Rate</span>
+              <input id="kareez_rate" type="number"  min="0" value="0" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            </div>        
+    
+            
+          </div>
+        </div>
+        <div class="col bg-light bg-gradient text-md-center">
+          <span class="text-primary fw-bold fs-5">Panni Cost</span>
+          <br>
+          <span id="panni_cost_result" class="text-start m-3"></span>
+          <br>
+          <span class="text-primary fw-bold fs-5">Embose Cost</span>
+          <br>
+          <span id="empbose_cost_result" class="text-start m-3"></span>
+          <br>
+          <span class="text-primary fw-bold fs-5">Kareez Cost</span>
+          <br>
+          <span id="kareez_cost_result" class="text-start m-3"></span>
+        </div>
+      </div>
+    </div>
+   </div> 
+   <br>
+
+
+      <!-- OTHER COST CALCULATOR -->
+      <div class="container jumbotron jumbotron-fluid ">
+        <nav class="navbar navbar-light bg-info w-75 container rounded-top border border-1">
+          <div class="container-fluid">
+            <a class="navbar-brand">Other Cost</a>
+          </div>
+        </nav>
+        <div class="container rounded-bottom w-75 border border-2">
+          <div class="row">
+            <div class="col bg-success bg-gradient ">
+              <div class="container-fluid">
+                       
+                
+                <div class="input-group input-group-sm m-3 ">
+                  <span class="input-group-text w-30 d-flex justify-content-center" id="inputGroup-sizing-sm">Other Cost %</span>
+                  <input id="other_cost_percentage" type="number" value="0" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                </div>
+            
+            
+              
+                
+              </div>
+            </div>
+            <div class="col bg-light bg-gradient text-md-center">
+              <span class="text-primary fw-bold fs-5">Other Cost</span>
+              <br>
+              <span id="other_cost_result" class="text-start m-3"></span>
+            </div>
+          </div>
+        </div>
+       </div> 
+       <br>
+
+       <!-- Total Cost of Book-->
+       <div class="container jumbotron jumbotron-fluid ">
+        <nav class="navbar navbar-light bg-info w-75 container rounded-top border border-1">
+          <div class="container-fluid">
+            <a class="navbar-brand">Total Cost</a>
+          </div>
+        </nav>
+        <div class="container rounded-bottom w-75 border border-2">
+          <div class="row">
+            <div class="col bg-success bg-gradient ">
+              <div class="container-fluid">
+            </div>
+            <div class="col bg-light bg-gradient text-md-center">
+              <span class="text-primary fw-bold fs-5">Total Cost for Book</span>
+              <br>
+              <span id="total_cost" class="text-start m-3"></span>
+              <br>
+          
+            </div>
+            
+          </div>
+        </div>
+       </div> 
+       <br>
+    
+    
+    
+   <div class="container jumbotron jumbotron-fluid ">
+    <div class="col-md-12 text-center">
+      <button type="button" class="btn btn-primary w-25 text-center m-5" onclick="calculate()">Calculate </button>
+
+  </div>
+    
+
+
+</div>
+
+
+
+<script>
+  function calculate(){
+
+
+  
+  var e = document.getElementById('paper_type');
+  var paper_type = document.getElementById("paper_type").options[e.selectedIndex].value;
+
+
+    // one rim cost
+    var e = document.getElementById('paper_size');
+    var paper_size = e.value;
+    
+    e = document.getElementById('paper_grammage');
+    var paper_grammage = e.options[e.selectedIndex].text;
+    
+    e = document.getElementById('paper_rate');
+    var paper_rate = e.value;
+
+    one_rim_cost = (paper_size * paper_grammage / 3100) * paper_rate;
+    document.getElementById("rim_cost_result").innerHTML = "Rs " + Math.round(one_rim_cost);
+
+    // total rim count
+    e = document.getElementById('page_ratio');
+    var page_ratio = e.value;
+    
+    e = document.getElementById('total_pages');
+    var total_pages = e.value;
+
+    number_of_rims = (total_pages/page_ratio);
+    document.getElementById("rim_count_result").innerHTML = number_of_rims;
+
+    // bux board rim cost
+    e = document.getElementById('bux_grammage');
+    var bux_grammage = e.options[e.selectedIndex].text;
+    
+    e = document.getElementById('bux_rate');
+    var bux_rate = e.value;
+
+    bux_rim_cost = (paper_size * bux_grammage / 15500) * bux_rate;
+    document.getElementById("bux_cost_result").innerHTML = "Rs " + Math.round(bux_rim_cost);
+
+     // total bux board rim count
+     e = document.getElementById('total_books');
+    var total_books = e.value;
+    
+
+    number_of_bux_rims = total_books/(page_ratio*0.5*100);
+    document.getElementById("bux_count_result").innerHTML = number_of_bux_rims;
+
+    // total bux board rim count
+    e = document.getElementById('lamination_rate');
+    var lamination_rate= e.value;
+    
+    // lamination cost
+    lamination_cost = ((paper_size * lamination_rate ) / 144)/(page_ratio/2);
+    document.getElementById("lamination_cost_result").innerHTML = lamination_cost * total_books;
+
+    // binding cost
+    e = document.getElementById('farma_count');
+    binding_cost = rates[paper_type][2]*e.value;
+    document.getElementById("binding_cost_result").innerHTML = binding_cost;
+
+    // printing cost
+    e = document.getElementById('card_color');
+    card_printing = rates[paper_type][0]*e.value;
+    document.getElementById("card_printing_cost").innerHTML = card_printing;
+
+    e = document.getElementById('paper_color');
+    paper_printing = rates[paper_type][1]*e.value;
+    document.getElementById("paper_printing_cost").innerHTML = paper_printing + " per rim : " + paper_printing*number_of_rims + " for " + number_of_rims;
+
+
+    // plate cost for 1000 books
+    e = document.getElementById('card_plate_count');
+    card_plate_cost = rates[paper_type][3]*e.value;
+    e = document.getElementById('paper_plate_count');
+    paper_plate_cost = 1200*e.value;
+    plate_cost = (paper_plate_cost + card_plate_cost)/6;
+    document.getElementById("plate_cost_result").innerHTML = "Cost for 6000 Books: "+ plate_cost;
+
+    // panni work cost for 1000 books
+    e = document.getElementById('panni_rate');
+    panni_cost = total_books*e.value;
+    e = document.getElementById('embose_rate');
+    embose_cost = total_books*e.value;
+    e = document.getElementById('kareez_rate');
+    kareez_cost = total_books*e.value;
+    
+    
+    document.getElementById("panni_cost_result").innerHTML = panni_cost;
+    document.getElementById("empbose_cost_result").innerHTML = embose_cost;
+    document.getElementById("kareez_cost_result").innerHTML = kareez_cost;
+
+    // other cost
+
+    e = document.getElementById("other_cost_percentage");
+    other_cost_percentage = e.value;
+
+    // total cost
+    total_cost = (one_rim_cost*number_of_rims) + (bux_rim_cost*number_of_bux_rims) + lamination_cost*total_books + 
+                  card_printing + (paper_printing*number_of_rims) + binding_cost + 
+                  plate_cost + panni_cost + embose_cost + kareez_cost;
+    other_cost = (other_cost_percentage/100)*total_cost;
+    document.getElementById("other_cost_result").innerHTML = Math.round(other_cost) ;
+    document.getElementById("total_cost").innerHTML = "Net Total Cost:" + Math.round(total_cost) + "  Cost with other charges: "+ Math.round(other_cost+total_cost);
+  };
+
+
+</script>
+</body>
+</html> 
