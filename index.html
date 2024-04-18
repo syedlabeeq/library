@@ -6,7 +6,10 @@
     <title>میرا  کتب خانه</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/droid-arabic-kufi" type="text/css"/>
     <style>
+
+
         body {
             background-color: #f9f9f9;
             font-family: 'Droid Arabic Kufi Regular', sans-serif;
@@ -62,6 +65,7 @@
         }
 
         .banner{
+            font-family: 'DroidArabicKufiRegular';
             font-weight: bold;
             color: grey;
             font-size: 1.7rem;
@@ -80,7 +84,7 @@
 <body>
     <div class="container mt-5">
         <form id="loginForm">
-            <!-- Username input -->
+            <!-- Email input -->
             <div data-mdb-input-init class="form-outline mb-4">
               <input type="text" id="username" name="username" class="form-control" required/>
               <label class="form-label" for="username">Username</label>
@@ -103,7 +107,7 @@
     <div class="container-fluid mt-4 mb-4 pt-4 text-center">
         
 
-    <p class="banner">کتب خانه شخصی</p>
+    <p class="banner">کتب خانه </p>
         
     </div>
 
@@ -113,7 +117,7 @@
                 <tr>
                     <th scope="col" class="serial-number">نمبر شمار</th>
                     <th scope="col">كتاب</th>
-                    <th scope="col">مؤلف</th>
+                    <th scope="col">مصنف</th>
                     <th scope="col">صنف</th>
                 </tr>
                 </thead>
@@ -138,7 +142,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                         <div class="col text-center">
-                            <h5 class="modal-title" id="bookDetailsModalLabel">تفاصيل الكتاب</h5>
+                            <h5 class="modal-title" id="bookDetailsModalLabel">تفصیلات</h5>
                         </div>
                     </div>
                     
@@ -157,7 +161,49 @@
     </div>
   <script>
 
-        let shift_key = 3;
+        let shift_key;
+
+        function sumAscii(inputString) {
+            let total = 0;
+            
+            // Iterate over each character in the string
+            for (let i = 0; i < inputString.length; i++) {
+                // Get the ASCII value of the current character and add it to the total
+                total += inputString.charCodeAt(i);
+            }
+            
+            return total;
+        }
+
+        function digitSum(number) {
+            while (number.toString().length > 1) {
+                let temp = 0;
+                const digits = number.toString();
+                for (let i = 0; i < digits.length; i++) {
+                    temp += parseInt(digits[i]);
+                }
+                number = temp;
+            }
+            return number;
+        }
+
+        function lowestFactor(number) {
+            // Handle edge case where number is 1
+            if (number === 1) {
+                return 1;
+            }
+
+            // Iterate from 2 to the square root of the number
+            for (let i = 2; i * i <= number; i++) {
+                // Check if i divides the number evenly
+                if (number % i === 0) {
+                    return i;
+                }
+            }
+
+            // If no factor is found, the number itself is the lowest factor
+            return number;
+        }
 
         function decryptEntry(entry, shift) {
             var decryptedEntry = [];
@@ -182,7 +228,7 @@
             dataArray.forEach((row, index) => {
             let decryptedEntry = decryptEntry(row, shift_key);
             const bookName = decryptedEntry[0];
-            const authorName = decryptedEntry[2];
+            const authorName = decryptedEntry[1];
             const translaterName = decryptedEntry[2];
             const genre = decryptedEntry[3];
             const publisher = decryptedEntry[4];
@@ -193,7 +239,7 @@
 
         // Load the data from the external JS file
         var script = document.createElement('script');
-        script.src = 'library_data.js';
+        script.src = 'library_data_final.js';
         script.onload = function() {
             // Call the drawTable function with the loaded data
             //drawTable(dataArray);
@@ -206,14 +252,20 @@
         
         let decryptedEntry = decryptEntry(dataArray[index], shift_key);
         const bookName = decryptedEntry[0];
-        const authorName = decryptedEntry[2];
+        const authorName = decryptedEntry[1];
         const translaterName = decryptedEntry[2];
         const genre = decryptedEntry[3];
         const publisher = decryptedEntry[4];
  
         //const [bookName, authorName, translaterName, genre, publisher] = dataArray[parseInt(e.target.parentElement.querySelector("th").textContent)-1];
         document.getElementById('bookDetails-name').innerHTML = "<strong>کتاب: </strong>" + bookName;
-        document.getElementById('bookDetails-author').innerHTML = "<strong>مصنف: </strong>" + authorName;
+        if (authorName == "")
+        {
+            document.getElementById('bookDetails-author').innerHTML = "<strong>مصنف: </strong>" + "۔۔۔";
+        }
+        else{
+            document.getElementById('bookDetails-author').innerHTML = "<strong>مصنف: </strong>" + authorName;
+        }
         if (translaterName == "")
         {
             document.getElementById('bookDetails-translator').innerHTML = "<strong>مترجم: </strong>" + "۔۔۔";
@@ -222,7 +274,7 @@
             document.getElementById('bookDetails-translator').innerHTML = "<strong>مترجم: </strong>" + translaterName;
         }
         document.getElementById('bookDetails-genre').innerHTML = "<strong>صنف: </strong>" + genre;
-        if (publisher == "\r")
+        if (publisher == "\r" || publisher == "")
         {
             document.getElementById('bookDetails-publisher').innerHTML = "<strong>ناشر: </strong>" + "۔۔۔";
         }
@@ -248,6 +300,8 @@
             shift_key = document.getElementById('password').value.length;
             // Check if username and password are correct (for demonstration purposes)
             
+            const totalAsciiSum = sumAscii(username) + sumAscii(password);
+            shift_key = lowestFactor(digitSum(totalAsciiSum));
             drawTable(dataArray);
             document.getElementById('content').style.display = 'block';
             document.getElementById('loginForm').style.display = 'none';
